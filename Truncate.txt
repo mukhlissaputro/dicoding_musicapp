@@ -1,0 +1,13 @@
+psql --username developer --dbname dicoding
+
+supersecretpassword
+
+TRUNCATE songs, users, authentications, playlists, playlistsongs, collaborations CASCADE;
+
+const owner = `user-${nanoid(16)}`;
+
+\d tablename;
+
+
+
+\dt
