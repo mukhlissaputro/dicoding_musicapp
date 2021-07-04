@@ -55,17 +55,17 @@ class PlaylistsService {
     }
   }
 
-  async verifyPlaylistOwner(id, owner) {
+  async verifyPlaylistOwner(playlistId, credentialId) {
     const query = {
-      text: 'SELECT * FROM playlists WHERE id = $1',
-      values: [id],
+      text: 'SELECT * FROM playlists where id = $1',
+      values: [playlistId],
     };
     const result = await this._pool.query(query);
     if (!result.rows.length) {
       throw new NotFoundError('Playlists tidak ditemukan');
     }
     const playlist = result.rows[0];
-    if (playlist.owner !== owner) {
+    if (playlist.owner !== credentialId) {
       throw new AuthorizationError('Anda tidak berhak mengakses resource ini');
     }
   }
